@@ -44,15 +44,26 @@ body {
     border-radius: 4px;
   }
   
-  button[type="button"] {
+  button[type="submit"] {
     padding: 5px 20px;
     background-color: #4CAF50;
-    color: white;
+    color: black;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: 0.3;
   }
   
-  button[type="button"]:hover {
-    background-color: #45a049;
+  button[type="submit"]:hover {
+    background-color: #15c81e;
+  }
+  img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
   }

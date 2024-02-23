@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-//const fs = require('fs');
-//const inquirer = require("inquirer")
+const fs = require('fs');
 const qr = require('qr-image');
 
 const app = express();
@@ -11,15 +10,17 @@ app.use(express.static('global'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/home', (req, res) => {
-  res.render('index.ejs');
+  res.render('index.ejs', { image: null }); 
 });
+
 app.post('/submit', (req, res) => {
   const url = req.body.url;
-  let qr_png = qr.image(url, { type: 'png' });
-  let qr = qr_png
- 
+  const qr_png = qr.image(url, { type: 'png' });
 
-  res.render('index.ejs', { image: qr });
+  qr_png.pipe(fs.createWriteStream('global/image.png'))
+    console.log('QR code image saved.');
+    res.render('index.ejs', { image: '/image.png' }); 
+  
 });
 
 app.listen(port, () => {
